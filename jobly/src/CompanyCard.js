@@ -20,6 +20,7 @@ function CompanyCard({ company }) {
     <Link to={`${handle}`}>
       <h6>{name}</h6>
       <p>{description}</p>
+      {company.logoUrl && <img src={company.logoUrl} alt="company logo" />}
     </Link>
   );
 }

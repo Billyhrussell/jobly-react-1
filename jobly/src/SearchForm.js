@@ -3,10 +3,9 @@ import React, { useState } from "react";
 /** Form for adding.
  *
  * Props:
- * - initialFormData
- * - handleSave: function to call in parent.
+ * - onSubmit: function to call in parent.
  *
- * { TodoApp, EditableTodo } -> TodoForm
+ * { CompanyList, JobList } -> SearchForm
  */
 
 function SearchForm({ onSubmit }) {
@@ -45,7 +44,7 @@ function SearchForm({ onSubmit }) {
         />
       </div>
       <div>
-        <button className="btn-primary rig btn btn-sm NewTodoForm-addBtn">
+        <button>
           Submit
         </button>
       </div>

@@ -22,7 +22,8 @@ function JobCard({ job, company = null }) {
         <h3>{company}</h3>}
       <br />
       <p>Salary: {salary}</p>
-      <p>Equity: {equity}</p>
+      {equity &&
+        <p>Equity: {equity}</p>}
     </div>
   );
 }

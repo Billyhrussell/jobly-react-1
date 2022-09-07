@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import JoblyApi from './_api';
 import SearchForm from './SearchForm';
-import CompanyCard from './CompanyCard';
+import CompanyCardList from './CompanyCardList';
 
 /** List of company cards with search form to filter
  * 
@@ -9,13 +9,14 @@ import CompanyCard from './CompanyCard';
  * 
  * State: 
  * - companies: array [{company}, {company}, ...]
+ *      where company is {handle, name, description, numEmployees, logoUrl}
  * 
- * RouteList -> CompanyList
+ * RouteList -> CompanyList -> { SearchForm, CompanyCardList }
  * 
  */
 
 function CompanyList() {
-  const [companies, setCompanies] = useState([]);
+  const [companies, setCompanies] = useState(null);
 
   useEffect(function getCompanyList() {
     async function getCompanies() {
@@ -43,8 +44,8 @@ function CompanyList() {
   return (
     <div>
       <SearchForm onSubmit={getQueriedResults} />
-
-      {companies.map(company => <CompanyCard key={company.handle} company={company} />)}
+      
+      <CompanyCardList companies={companies} />
     </div>);
 }
 

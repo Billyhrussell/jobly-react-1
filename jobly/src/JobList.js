@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import JoblyApi from './_api';
 import SearchForm from './SearchForm';
-import JobCard from './JobCard';
+import JobCardList from './JobCardList';
 
 /** List of job cards with search form to filter
  * 
@@ -9,8 +9,9 @@ import JobCard from './JobCard';
  * 
  * State: 
  * - jobs: array [{job}, {job}, ...]
+ *    where job is {id, title, salary, equity, companyHandle, companyName}
  * 
- * RouteList -> JobList
+ * RouteList -> JobList -> { SearchForm, JobCardList }
  * 
  */
 
@@ -21,7 +22,7 @@ function JobList() {
     async function getJobs() {
       try {
         const jobsData = await JoblyApi.getAllJobs();
-        setJobs(jobsData);
+        setJobs([...jobsData]);
       } catch (err) {
         console.error("ERROR: ", err);
       }
@@ -32,7 +33,7 @@ function JobList() {
   async function getQueriedResults(searchInput) {
     try {
       const jobsData = await JoblyApi.getSearchedJobs(searchInput);
-      setJobs(jobsData);
+      setJobs([...jobsData]);
     } catch (err) {
       console.error("ERROR: ", err);
     }
@@ -44,7 +45,7 @@ function JobList() {
     <div>
       <SearchForm onSubmit={getQueriedResults} />
 
-      {jobs.map(job => <JobCard key={job.id} job={job} company={job.companyName} />)}
+      <JobCardList jobs={jobs}/>
     </div>);
 }
 
