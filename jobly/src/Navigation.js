@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 /** Displays Navigation bar with links to homepage, company list, and job list
  * 

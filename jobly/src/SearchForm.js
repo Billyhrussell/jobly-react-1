@@ -9,8 +9,8 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function SearchForm({onSubmit}) {
-  const initial = {search:""};
+function SearchForm({ onSubmit }) {
+  const initial = { search: "" };
 
   const [formData, setFormData] = useState(initial);
 
@@ -20,7 +20,7 @@ function SearchForm({onSubmit}) {
     setFormData(fData => ({
       ...fData,
       [name]: value,
-    }))
+    }));
   }
 
   /** Call parent function and clear form. */
@@ -31,26 +31,26 @@ function SearchForm({onSubmit}) {
   }
 
   return (
-      <form className="SearchForm" onSubmit={handleSubmit}>
+    <form className="SearchForm" onSubmit={handleSubmit}>
 
-        <div className="mb-3">
-          <input
-              id="search"
-              name="search"
-              className="form-control"
-              placeholder="Enter Search"
-              onChange={handleChange}
-              value={formData.search}
-              aria-label="Search"
-          />
-        </div>
-        <div>
-          <button className="btn-primary rig btn btn-sm NewTodoForm-addBtn">
-            Submit
-          </button>
-        </div>
+      <div className="mb-3">
+        <input
+          id="search"
+          name="search"
+          className="form-control"
+          placeholder="Enter Search"
+          onChange={handleChange}
+          value={formData.search}
+          aria-label="Search"
+        />
+      </div>
+      <div>
+        <button className="btn-primary rig btn btn-sm NewTodoForm-addBtn">
+          Submit
+        </button>
+      </div>
 
-      </form>
+    </form>
   );
 }
 

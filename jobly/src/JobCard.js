@@ -1,10 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 /** Displays individual card with basic information about a Job
  *
  * Props:
- * - Job
+ * - Job: object {id, title, salary, equity}
  *
  * state: none
  *
@@ -12,15 +11,19 @@ import { Link } from "react-router-dom";
  *
 */
 
-function JobCard({ job }) {
+function JobCard({ job, company = null }) {
 
-  const {handle, name, description } = job;
+  const { title, salary, equity } = job;
 
   return (
-    <Link to={`${handle}`}>
-      <h6>{name}</h6>
-      <p>{description}</p>
-    </Link>
+    <div>
+      <h1>{title}</h1>
+      {company &&
+        <h3>{company}</h3>}
+      <br />
+      <p>Salary: {salary}</p>
+      <p>Equity: {equity}</p>
+    </div>
   );
 }
 

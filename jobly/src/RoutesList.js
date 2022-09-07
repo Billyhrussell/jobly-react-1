@@ -30,7 +30,7 @@ function RouteList() {
 
       <Route
         path="/companies/:handle"
-        element={<CompanyDetails/>}
+        element={<CompanyDetails />}
       />
 
       <Route
