@@ -18,7 +18,7 @@ import {
  * App -> Navigation
  *
 */
-function Navigation(args) {
+function Navigation({logout}) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -34,6 +34,15 @@ function Navigation(args) {
               </NavItem>
               <NavItem>
                 <NavLink href="/jobs">Jobs</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/login">Login</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/signup">Sign Up</NavLink>
+              </NavItem>
+              <NavItem>
+                <button onClick={logout}>Log out</button>
               </NavItem>
             </Nav>
           </Collapse>

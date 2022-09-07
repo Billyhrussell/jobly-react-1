@@ -5,8 +5,8 @@ import CompanyList from "./CompanyList";
 import CompanyDetails from "./CompanyDetails";
 import JobList from "./JobList";
 import Profile from './Profile';
-import SignUp from './SignUp';
-import Login from './Login';
+import SignUp from './SignUpForm';
+import Login from './LoginForm';
 
 /** Function  creates paths to different pages
  *
@@ -18,7 +18,7 @@ import Login from './Login';
  *
 */
 
-function RouteList() {
+function RouteList({login, signup}) {
   return (
     <Routes>
       <Route
@@ -43,12 +43,12 @@ function RouteList() {
 
       <Route
         path="/login"
-        element={<Login/>}
+        element={<Login login={login}/>}
       />
 
       <Route
         path="/signup"
-        element={<SignUp />}
+        element={<SignUp register={signup}/>}
       />
 
       <Route

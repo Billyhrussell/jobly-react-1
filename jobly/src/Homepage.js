@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import userContext from "./userContext";
 import "./Homepage.css";
+
 
 /** Displays main homepage for Jobly app
  *
@@ -11,10 +13,14 @@ import "./Homepage.css";
  */
 
 function Homepage() {
+  const { currentUser } = useContext(userContext);
+  
   return (
     <div className="homepage">
       <h1>Jobly</h1>
-      <h3>All the jobs in one, convenient place.</h3>
+      <h4>All the jobs in one, convenient place.</h4>
+      {currentUser &&
+      <h2>Welcome Back, {currentUser.firstName}</h2>}
     </div>
   );
 }
