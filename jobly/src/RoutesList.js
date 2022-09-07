@@ -4,6 +4,9 @@ import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
 import CompanyDetails from "./CompanyDetails";
 import JobList from "./JobList";
+import Profile from './Profile';
+import SignUp from './SignUp';
+import Login from './Login';
 
 /** Function  creates paths to different pages
  *
@@ -37,6 +40,22 @@ function RouteList() {
         path="/jobs"
         element={<JobList />}
       />
+
+      <Route
+        path="/login"
+        element={<Login/>}
+      />
+
+      <Route
+        path="/signup"
+        element={<SignUp />}
+      />
+
+      <Route
+        path="/profile"
+        element={<Profile />}
+      />
+
     </Routes>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./JobCard.css";
 /** Displays individual card with basic information about a Job
  *
  * Props:
@@ -16,7 +16,7 @@ function JobCard({ job, company = null }) {
   const { title, salary, equity } = job;
 
   return (
-    <div>
+    <div className="jobCard">
       <h1>{title}</h1>
       {company &&
         <h3>{company}</h3>}
