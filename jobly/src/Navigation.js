@@ -37,19 +37,27 @@ function Navigation({ logout }) {
           <Nav className="ms-auto" navbar>
             {currentUser &&
               <NavItem>
-                <NavLink to="/companies" activeClassName="active" tag={RRNavLink}>Companies</NavLink>
+                <NavLink to="/companies"
+                  activeClassName="active"
+                  tag={RRNavLink}>Companies</NavLink>
               </NavItem>}
             {currentUser &&
               <NavItem>
-                <NavLink to="/jobs" activeClassName="active" tag={RRNavLink}>Jobs</NavLink>
+                <NavLink to="/jobs"
+                  activeClassName="active"
+                  tag={RRNavLink}>Jobs</NavLink>
               </NavItem>}
             {!currentUser &&
               <NavItem>
-                <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
+                <NavLink to="/login"
+                  activeClassName="active"
+                  tag={RRNavLink}>Login</NavLink>
               </NavItem>}
             {!currentUser &&
               <NavItem>
-                <NavLink to="/signup" activeClassName="active" tag={RRNavLink}>Sign Up</NavLink>
+                <NavLink to="/signup"
+                  activeClassName="active"
+                  tag={RRNavLink}>Sign Up</NavLink>
               </NavItem>}
             {currentUser &&
               <NavItem>
