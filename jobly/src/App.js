@@ -34,11 +34,14 @@ function App() {
           let user = jwt_decode(token);
           const userData = await JoblyApi.getUserInfo(user.username);
           setCurrentUser(userData);
+          localStorage.setItem(currentUser);
         } catch (err) {
           console.error("ERROR: ", err);
         }
       }
       getUser(token);
+    } else {
+      localStorage.removeItem(currentUser);
     }
   }, [token]);
 
