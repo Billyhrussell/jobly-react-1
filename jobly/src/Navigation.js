@@ -15,7 +15,8 @@ import userContext from './userContext';
 
 /** Displays Navigation bar with links to homepage, company list, and job list
  *
- * Props: none
+ * Props: 
+ * - logout: function called from parent
  *
  * State: none
  *
