@@ -3,7 +3,8 @@ import "./JobCard.css";
 /** Displays individual card with basic information about a Job
  *
  * Props:
- * - Job: object {id, title, salary, equity}
+ * - job: object {id, title, salary, equity}
+ * - company
  *
  * state: none
  *

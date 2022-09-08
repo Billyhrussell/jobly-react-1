@@ -1,7 +1,6 @@
 import React from "react";
 
 import JobCard from "./JobCard";
-//TODO: create companyCardList for companies
 
 /** Creates a list of job cards from array of jobs
  * 
@@ -14,7 +13,7 @@ import JobCard from "./JobCard";
  * 
  */
 
-function JobCardList({ jobs}) {
+function JobCardList({ jobs }) {
 
   return (
     <div> 

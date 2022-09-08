@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+/** Form for logging in.
+ *
+ * Props:
+ * - login: function to call in parent.
+ *
+ * RoutesList -> LoginForm
+ */
 
 function LoginForm({ login }) {
   const initial = { username: "", password:"" };

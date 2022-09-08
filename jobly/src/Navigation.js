@@ -11,6 +11,7 @@ import {
 } from 'reactstrap';
 
 import userContext from './userContext';
+
 /** Displays Navigation bar with links to homepage, company list, and job list
  *
  * Props: none
@@ -20,6 +21,7 @@ import userContext from './userContext';
  * App -> Navigation
  *
 */
+
 function Navigation({logout}) {
   const { currentUser } = useContext(userContext)
   const [isOpen, setIsOpen] = useState(false);

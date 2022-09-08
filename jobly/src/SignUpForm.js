@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 
+/** Form for adding.
+ *
+ * Props:
+ * - register: function to call in parent.
+ *
+ * RoutesList -> SignUpForm
+ */
+
 function SignUpForm({ register }) {
   const initial =
     { username: "", password:"", firstName:"", lastName:"", email:"" };

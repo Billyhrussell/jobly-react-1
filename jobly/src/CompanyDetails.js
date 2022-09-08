@@ -4,7 +4,8 @@ import JobCardList from './JobCardList';
 import { useParams, Navigate } from 'react-router-dom';
 import userContext from './userContext';
 
-/** Displays page with details about an individual company
+/** Displays page with details about an individual company. 
+ * Authorization: logged-in users 
  *
  * Props: none
  *

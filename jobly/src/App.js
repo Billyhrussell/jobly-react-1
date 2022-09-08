@@ -13,7 +13,10 @@ import RoutesList from "./RoutesList";
  *
  * state: none
  *
- * props: none
+ * props: 
+ * - token
+ * - currentUser: object {username, firstName, lastName, email, isAdmin, jobs}
+ *      where jobs is {id, title, companyHandle, companyName, state}
  *
  * App -> { RoutesList, Navigation }
  *
@@ -23,8 +26,6 @@ function App() {
 
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  console.log("what is current token: ", token);
-  console.log("who is current user: ", currentUser);
 
 
   // useEffect(function getCurrentUser() {
@@ -43,9 +44,7 @@ function App() {
 
   async function getUser(token) {
     try {
-      console.log("token inside of try ", token);
       let user = jwt_decode(token);
-      console.log("decoded token: ", user);
       const userData = await JoblyApi.getUserInfo(user.username);
       setCurrentUser(userData);
     } catch (err) {
@@ -55,7 +54,6 @@ function App() {
 
   async function login({username, password}) {
     let tokenData = await JoblyApi.login(username, password);
-    console.log("token data: ", tokenData);
     setToken(tokenData);
     JoblyApi.token = tokenData;
     getUser(tokenData);

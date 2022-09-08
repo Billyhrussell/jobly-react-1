@@ -2,10 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import JoblyApi from './_api';
 import SearchForm from './SearchForm';
 import JobCardList from './JobCardList';
-import { useParams, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import userContext from './userContext';
 
 /** List of job cards with search form to filter
+ * Authorization: logged-in users
  *
  * Props: none
  *

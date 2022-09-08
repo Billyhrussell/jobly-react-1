@@ -2,10 +2,12 @@ import React, { useEffect, useState, useContext } from 'react';
 import JoblyApi from './_api';
 import SearchForm from './SearchForm';
 import CompanyCardList from './CompanyCardList';
-import { useParams, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import userContext from './userContext';
+
 /** List of company cards with search form to filter
- *
+ * Authorization: logged-in users
+ * 
  * Props: none
  *
  * State:
@@ -40,7 +42,7 @@ function CompanyList() {
       console.error("ERROR: ", err);
     }
   }
-  if(!currentUser) return <Navigate to="/"/>
+  if (!currentUser) return <Navigate to="/" />;
   if (!companies) return (<p>Loading...</p>);
 
   return (

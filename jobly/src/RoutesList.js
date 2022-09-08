@@ -10,11 +10,13 @@ import Login from './LoginForm';
 
 /** Function  creates paths to different pages
  *
- * Props: none
+ * Props: 
+ * - login: function to be called in from parent
+ * - signup: function to be called in from parent
  *
  * State: none
  *
- * App -> RoutesList -> { Homepage, CompanyList, CompanyDetails, JobList }
+ * App -> RoutesList -> { Homepage, CompanyList, CompanyDetails, JobList, LoginForm, SignUpForm,  }
  *
 */
 
