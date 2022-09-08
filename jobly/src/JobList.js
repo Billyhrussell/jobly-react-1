@@ -19,7 +19,7 @@ import Loading from "./Loading";
 
 function JobList() {
 
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(null);
 
   useEffect(function getJobList() {
     async function getJobs() {
