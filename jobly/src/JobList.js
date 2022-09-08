@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import JoblyApi from './_api';
 import SearchForm from './SearchForm';
 import JobCardList from './JobCardList';
+import Loading from "./Loading";
 
 /** List of job cards with search form to filter
  * Authorization: logged-in users
@@ -41,7 +42,7 @@ function JobList() {
     }
   }
 
-  if (!jobs) return (<p>Loading...</p>);
+  if (!jobs) return (<Loading />);
 
   return (
     <div>

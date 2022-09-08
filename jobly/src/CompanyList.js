@@ -2,6 +2,7 @@ import React, { useEffect, useState  } from 'react';
 import JoblyApi from './_api';
 import SearchForm from './SearchForm';
 import CompanyCardList from './CompanyCardList';
+import Loading from "./Loading";
 
 
 /** List of company cards with search form to filter
@@ -42,7 +43,7 @@ function CompanyList() {
     }
   }
 
-  if (!companies) return (<p>Loading...</p>);
+  if (!companies) return (<Loading />);
 
   return (
     <div>

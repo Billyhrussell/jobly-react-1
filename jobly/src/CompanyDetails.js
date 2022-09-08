@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import JoblyApi from './_api';
 import JobCardList from './JobCardList';
+import Loading from "./Loading";
 import { useParams } from 'react-router-dom';
+import "./CompanyDetails.css";
 
 /** Displays page with details about an individual company.
  * Authorization: logged-in users
@@ -32,12 +34,12 @@ function CompanyDetails() {
     getCompanies();
   }, [params.handle]);
 
-  if (!company) return (<p>Loading...</p>);
+  if (!company) return (<Loading />);
 
   return (
-    <div>
-      <h1> {company.name}</h1>
-      <h2> {company.description}</h2>
+    <div className="CompanyDetails">
+      <h4> {company.name}</h4>
+      <h6> {company.description}</h6>
       <JobCardList jobs={company.jobs} company={company.name} />
     </div>
   );

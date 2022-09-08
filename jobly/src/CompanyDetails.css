@@ -1,0 +1,11 @@
+.CompanyDetails{
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+
+.CompanyDetails h4, h6{
+    padding-left:24px;
+}

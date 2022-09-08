@@ -12,6 +12,10 @@
     text-decoration: none;
 }
 
+.companyCard h6{
+    padding-left: 0px;
+}
+
 img {
     max-height: 27px;
     max-width: auto;
