@@ -44,7 +44,7 @@ function SearchForm({ onSubmit }) {
         />
       </div>
       <div>
-        <button>
+        <button className="btn btn-primary">
           Submit
         </button>
       </div>

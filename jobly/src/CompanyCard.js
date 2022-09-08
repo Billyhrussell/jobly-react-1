@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import './CompanyCard.css'
+import './CompanyCard.css';
 /** Displays individual card with basic information about a company
  *
  * Props:
@@ -18,11 +18,12 @@ function CompanyCard({ company }) {
 
   return (
     <div className="companyCard">
-    <Link to={`${handle}`}>
-      <h6>{name}</h6>
-      <p>{description}</p>
-      {company.logoUrl && <img src={company.logoUrl} alt="company logo" />}
-    </Link>
+      <Link to={`${handle}`}>
+        <h6>{name}
+          {company.logoUrl && <img src={company.logoUrl} alt="company logo" />}
+        </h6>
+        <p>{description}</p>
+      </Link>
     </div>
   );
 }

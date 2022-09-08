@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./LoginForm.css";
 
 /** Form for logging in.
  *
@@ -10,7 +11,7 @@ import { useNavigate } from "react-router-dom";
  */
 
 function LoginForm({ login }) {
-  const initial = { username: "", password:"" };
+  const initial = { username: "", password: "" };
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initial);
 
@@ -32,37 +33,42 @@ function LoginForm({ login }) {
   }
 
   return (
-    <form className="LoginForm" onSubmit={handleSubmit}>
+    <div className="loginPage">
+      <h3 className="mb-4">Log In</h3>
+      <form className="LoginForm" onSubmit={handleSubmit}>
 
-      <div className="mb-3">
-        <input
-          id="username"
-          name="username"
-          className="form-control"
-          placeholder="Enter username"
-          onChange={handleChange}
-          value={formData.username}
-          aria-label="Username"
-        />
-      </div>
-      <div className="mb-3">
-        <input
-          id="password"
-          name="password"
-          className="form-control"
-          placeholder="Enter password"
-          onChange={handleChange}
-          value={formData.password}
-          aria-label="Password"
-        />
-      </div>
-      <div>
-        <button>
-          Submit
-        </button>
-      </div>
+        <div className="mb-3">
+          <label className="mb-2 label">Username</label>
+          <input
+            id="username"
+            name="username"
+            className="form-control"
+            placeholder="Enter username"
+            onChange={handleChange}
+            value={formData.username}
+            aria-label="Username"
+          />
+        </div>
+        <div className="mb-3">
+        <label className="mb-2 label">Password</label>
+          <input
+            id="password"
+            name="password"
+            className="form-control"
+            placeholder="Enter password"
+            onChange={handleChange}
+            value={formData.password}
+            aria-label="Password"
+          />
+        </div>
+        <div className="mb-3">
+          <button className="btn btn-primary">
+            Submit
+          </button>
+        </div>
 
-    </form>
+      </form>
+    </div>
   );
 }
 
