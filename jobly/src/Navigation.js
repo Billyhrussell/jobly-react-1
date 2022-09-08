@@ -1,5 +1,5 @@
 // import { NavLink } from "react-router-dom";
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Collapse,
   Navbar,
@@ -9,6 +9,8 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+
+import userContext from './userContext';
 /** Displays Navigation bar with links to homepage, company list, and job list
  *
  * Props: none
@@ -19,6 +21,7 @@ import {
  *
 */
 function Navigation({logout}) {
+  const { currentUser } = useContext(userContext)
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -29,21 +32,26 @@ function Navigation({logout}) {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ms-auto" navbar>
+              {currentUser &&
               <NavItem>
                 <NavLink href="/companies">Companies</NavLink>
-              </NavItem>
+              </NavItem>}
+              {currentUser &&
               <NavItem>
                 <NavLink href="/jobs">Jobs</NavLink>
-              </NavItem>
+              </NavItem>}
+              {!currentUser &&
               <NavItem>
                 <NavLink href="/login">Login</NavLink>
-              </NavItem>
+              </NavItem>}
+              {!currentUser &&
               <NavItem>
                 <NavLink href="/signup">Sign Up</NavLink>
-              </NavItem>
+              </NavItem>}
+              {currentUser &&
               <NavItem>
-                <button onClick={logout}>Log out</button>
-              </NavItem>
+                <button onClick={logout}>Log out, {currentUser.firstName}</button>
+              </NavItem>}
             </Nav>
           </Collapse>
         </Navbar>
