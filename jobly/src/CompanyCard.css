@@ -1,14 +1,20 @@
 .companyCard{
+    border-radius: 10px;
     margin: 20px;
-    padding: 10px;
+    padding: 20px;
     background-color: white;
-    color:black;
-    text-decoration: none;
     display: flex;
     flex-direction:column
+}
+
+.companyCard a{
+    color: black;
+    text-decoration: none;
 }
 
 img {
     max-height: 27px;
     max-width: auto;
+    margin-top: -25px;
+    margin-left: 90%;
 }

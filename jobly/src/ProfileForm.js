@@ -20,12 +20,12 @@ function ProfileForm() {
   let initial = { username, firstName, lastName, email };
 
   const [formData, setFormData] = useState(initial);
-  const [update, setUpdate] = useState(false);
+
+  const [updateSuccessful, setUpdateSuccessful] = useState(false);
 
   async function updateProfile(formData) {
     const { username, firstName, lastName, email } = formData;
     try {
-      console.log("FORM DATA: ", formData);
       const updatedUser = await JoblyApi.updateUserInfo(username, firstName, lastName, email);
       setCurrentUser(updatedUser);
     } catch (err) {
@@ -46,7 +46,7 @@ function ProfileForm() {
   async function handleSubmit(evt) {
     evt.preventDefault();
     await updateProfile(formData);
-    setUpdate(true);
+    setUpdateSuccessful(true);
   }
 
   return (
@@ -104,7 +104,7 @@ function ProfileForm() {
           />
         </div>
 
-        {update &&
+        {updateSuccessful &&
           <div className="alert alert-success" role="alert">
             Updated Successfully!
           </div>

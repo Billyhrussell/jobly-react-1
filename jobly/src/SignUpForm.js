@@ -6,7 +6,7 @@ import "./SignUpForm.css"
  *
  * Props:
  * - register: function to call in parent.
- * 
+ *
  * State:
  * - formData
  *
@@ -63,6 +63,7 @@ function SignUpForm({ register }) {
             onChange={handleChange}
             value={formData.password}
             aria-label="Password"
+            type="password"
           />
         </div>
         <div className="mb-3">

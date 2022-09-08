@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-
+import './SearchForm.css'
 /** Form for adding.
  *
  * Props:
  * - onSubmit: function to call in parent.
- * 
+ *
  * State:
  * - formData
  *
@@ -33,9 +33,8 @@ function SearchForm({ onSubmit }) {
   }
 
   return (
-    <form className="SearchForm" onSubmit={handleSubmit}>
-
-      <div className="mb-3">
+    <form className = "SearchForm row justify-content-center justify-content-lg-start gx-0" onSubmit={handleSubmit}>
+      <div className="col-8">
         <input
           id="search"
           name="search"
@@ -45,12 +44,11 @@ function SearchForm({ onSubmit }) {
           value={formData.search}
           aria-label="Search"
         />
-      </div>
-      <div>
-        <button className="btn btn-primary">
+        </div>
+
+        <button className="btn btn-primary col-auto">
           Submit
         </button>
-      </div>
 
     </form>
   );

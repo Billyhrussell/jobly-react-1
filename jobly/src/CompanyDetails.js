@@ -3,8 +3,8 @@ import JoblyApi from './_api';
 import JobCardList from './JobCardList';
 import { useParams } from 'react-router-dom';
 
-/** Displays page with details about an individual company. 
- * Authorization: logged-in users 
+/** Displays page with details about an individual company.
+ * Authorization: logged-in users
  *
  * Props: none
  *

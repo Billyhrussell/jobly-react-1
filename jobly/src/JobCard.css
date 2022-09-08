@@ -1,8 +1,22 @@
 .jobCard{
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
     background-color: white;
-    padding-left: 20px;
-    width: 50%;
-    /* display: flex; */
-    /* justify-content: center; */
-    align-items: center;
+    color:black;
+    display: flex;
+    flex-direction:column
+}
+
+.jobCard h3{
+    font-size: medium;
+}
+
+.jobCard h4{
+    font-size: small;
+
+}
+
+.jobCard p{
+    font-size: smaller;
 }

@@ -27,45 +27,49 @@ function RouteList({ login, signup }) {
 
   return (
     <Routes>
-      <Route
+
+
+      {currentUser &&
+        <>
+          <Route
+            path="/companies"
+            element={<CompanyList />}
+          />
+          <Route
+            path="/companies/:handle"
+            element={<CompanyDetails />}
+          />
+
+          <Route
+            path="/jobs"
+            element={<JobList />}
+          />
+          <Route
+            path="/profile"
+            element={<ProfileForm />}
+          />
+        </>}
+
+        <Route
         path="/"
         element={<Homepage />}
       />
 
-      {currentUser &&
-        <Route
-          path="/companies"
-          element={<CompanyList />}
-        />}
+      {!currentUser &&
+        <>
+          <Route
+            path="/login"
+            element={<Login login={login} />}
+          />
 
-      {currentUser &&
-        <Route
-          path="/companies/:handle"
-          element={<CompanyDetails />}
-        />}
+          <Route
+            path="/signup"
+            element={<SignUp register={signup} />}
+          />
+        </>
+      }
 
-      {currentUser &&
-        <Route
-          path="/jobs"
-          element={<JobList />}
-        />}
-
-      <Route
-        path="/login"
-        element={<Login login={login} />}
-      />
-
-      <Route
-        path="/signup"
-        element={<SignUp register={signup} />}
-      />
-
-      {currentUser &&
-        <Route
-          path="/profile"
-          element={<ProfileForm />}
-        />}
-
+      {/* FIXME: navigates to / when on companies twice */}
       <Route path="*" element={<Navigate to="/" />} />
 
     </Routes>

@@ -18,13 +18,13 @@ function JobCard({ job, company = null }) {
 
   return (
     <div className="jobCard">
-      <h1>{title}</h1>
+      <h3>{title}</h3>
       {company &&
-        <h3>{company}</h3>}
+        <h4>{company}</h4>}
       <br />
-      <p>Salary: {salary}</p>
-      {equity &&
-        <p>Equity: {equity}</p>}
+
+      <p>Salary: {salary || "unknown"} <br/>
+        Equity: {equity || "unknown"}</p>
     </div>
   );
 }

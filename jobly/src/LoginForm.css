@@ -5,7 +5,7 @@
 }
 
 
-h3{
+.loginPage h3{
     color:white;
     text-shadow: 2px 2px 2px rgb(73, 70, 70);
     margin-top: 100px;
@@ -25,6 +25,6 @@ h3{
     align-items: center;
 }
 
-button{
+.loginPage button{
     width: 200px
 }

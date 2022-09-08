@@ -22,9 +22,11 @@ import RoutesList from "./RoutesList";
  *
  */
 
+const GLOBAL_TOKEN = "token";
+
 function App() {
 
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [token, setToken] = useState(localStorage.getItem(GLOBAL_TOKEN) || null);
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(function getCurrentUser() {
@@ -51,25 +53,24 @@ function App() {
     try {
       let tokenData = await JoblyApi.login(username, password);
       setToken(tokenData);
-      localStorage.setItem("token", tokenData);
+      localStorage.setItem(GLOBAL_TOKEN, tokenData);
     } catch (err) {
       console.error("ERROR: ", err);
     }
   }
 
-  //TODO: set "token" to global
   function logout() {
     setCurrentUser(null);
     setToken(null);
     JoblyApi.token = null;
-    localStorage.removeItem("token");
+    localStorage.removeItem(GLOBAL_TOKEN);
   }
 
   async function signup({ username, password, firstName, lastName, email }) {
     try {
       let tokenData = await JoblyApi.createNewUser(username, password, firstName, lastName, email);
       setToken(tokenData);
-      localStorage.setItem("token", tokenData);
+      localStorage.setItem(GLOBAL_TOKEN, tokenData);
     } catch (err) {
       console.error("ERROR: ", err);
     }
