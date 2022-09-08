@@ -18,7 +18,8 @@ import userContext from './userContext';
  * Props: 
  * - logout: function called from parent
  *
- * State: none
+ * State: 
+ * - isOpen: boolean
  *
  * App -> Navigation
  *
