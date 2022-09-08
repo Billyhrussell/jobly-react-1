@@ -1,8 +1,7 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import JoblyApi from './_api';
 import JobCardList from './JobCardList';
-import { useParams, Navigate } from 'react-router-dom';
-import userContext from './userContext';
+import { useParams } from 'react-router-dom';
 
 /** Displays page with details about an individual company. 
  * Authorization: logged-in users 
@@ -17,7 +16,7 @@ import userContext from './userContext';
  *
  */
 function CompanyDetails() {
-  const { currentUser } = useContext(userContext);
+
   const params = useParams();
   const [company, setCompany] = useState(null);
 
@@ -33,7 +32,6 @@ function CompanyDetails() {
     getCompanies();
   }, [params.handle]);
 
-  if(!currentUser) return <Navigate to="/"/>
   if (!company) return (<p>Loading...</p>);
 
   return (

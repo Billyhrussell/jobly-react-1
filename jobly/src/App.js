@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 import { BrowserRouter } from "react-router-dom";
 
@@ -11,9 +11,9 @@ import RoutesList from "./RoutesList";
 /**
  * App
  *
- * state: none
+ * props: none
  *
- * props: 
+ * state: 
  * - token
  * - currentUser: object {username, firstName, lastName, email, isAdmin, jobs}
  *      where jobs is {id, title, companyHandle, companyName, state}
@@ -27,36 +27,30 @@ function App() {
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
 
+  useEffect(function getCurrentUser() {
+    if (token) {
+      async function getUser(token) {
+        try {
+          let user = jwt_decode(token);
+          const userData = await JoblyApi.getUserInfo(user.username);
+          setCurrentUser(userData);
+        } catch (err) {
+          console.error("ERROR: ", err);
+        }
+      }
+      getUser(token);
+    }
+  }, [token]);
 
-  // useEffect(function getCurrentUser() {
-  //   async function getUser() {
-  //     try {
-  //       let { username } = jwt_decode(token);
-  //       console.log("decoded token: ", username);
-  //       const userData = await JoblyApi.getUserInfo(username);
-  //       setCurrentUser(userData);
-  //     } catch (err) {
-  //       console.error("ERROR: ", err);
-  //     }
-  //   }
-  //   getUser();
-  // }, [token]);
 
-  async function getUser(token) {
+  async function login({ username, password }) {
     try {
-      let user = jwt_decode(token);
-      const userData = await JoblyApi.getUserInfo(user.username);
-      setCurrentUser(userData);
+      let tokenData = await JoblyApi.login(username, password);
+      setToken(tokenData);
+      JoblyApi.token = tokenData;
     } catch (err) {
       console.error("ERROR: ", err);
     }
-  }
-
-  async function login({username, password}) {
-    let tokenData = await JoblyApi.login(username, password);
-    setToken(tokenData);
-    JoblyApi.token = tokenData;
-    getUser(tokenData);
   }
 
   function logout() {
@@ -65,11 +59,14 @@ function App() {
     JoblyApi.token = null;
   }
 
-  async function signup({username, password, firstName, lastName, email}) {
-    let tokenData = await JoblyApi.createNewUser(username, password, firstName, lastName, email);
-    setToken(tokenData);
-    JoblyApi.token = tokenData;
-    getUser();
+  async function signup({ username, password, firstName, lastName, email }) {
+    try {
+      let tokenData = await JoblyApi.createNewUser(username, password, firstName, lastName, email);
+      setToken(tokenData);
+      JoblyApi.token = tokenData;
+    } catch (err) {
+      console.error("ERROR: ", err);
+    }
   }
 
   return (

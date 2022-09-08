@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import JoblyApi from './_api';
 import SearchForm from './SearchForm';
 import JobCardList from './JobCardList';
-import { Navigate } from 'react-router-dom';
-import userContext from './userContext';
 
 /** List of job cards with search form to filter
  * Authorization: logged-in users
@@ -19,7 +17,6 @@ import userContext from './userContext';
  */
 
 function JobList() {
-  const { currentUser } = useContext(userContext);
 
   const [jobs, setJobs] = useState([]);
 
@@ -44,7 +41,6 @@ function JobList() {
     }
   }
 
-  if(!currentUser) return <Navigate to="/"/>
   if (!jobs) return (<p>Loading...</p>);
 
   return (

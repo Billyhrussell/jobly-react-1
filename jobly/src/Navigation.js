@@ -30,6 +30,46 @@ function Navigation({ logout }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
+  function loggedIn() {
+    return (
+      <>
+        <NavItem>
+          <NavLink to="/companies"
+            activeClassName="active"
+            tag={RRNavLink}>Companies</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/jobs"
+            activeClassName="active"
+            tag={RRNavLink}>Jobs</NavLink>
+        </NavItem>
+        <NavItem>
+          <button
+            className="nav-link"
+            onClick={logout}>Log out, {currentUser.firstName}
+          </button>
+        </NavItem>
+      </>
+    );
+  }
+
+  function loggedOut() {
+    return (
+      <>
+        <NavItem>
+          <NavLink to="/login"
+            activeClassName="active"
+            tag={RRNavLink}>Login</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/signup"
+            activeClassName="active"
+            tag={RRNavLink}>Sign Up</NavLink>
+        </NavItem>
+      </>
+    );
+  }
+
   return (
     <div>
       <Navbar color="white" light expand="md">
@@ -37,37 +77,8 @@ function Navigation({ logout }) {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
-            {currentUser &&
-              <NavItem>
-                <NavLink to="/companies"
-                  activeClassName="active"
-                  tag={RRNavLink}>Companies</NavLink>
-              </NavItem>}
-            {currentUser &&
-              <NavItem>
-                <NavLink to="/jobs"
-                  activeClassName="active"
-                  tag={RRNavLink}>Jobs</NavLink>
-              </NavItem>}
-            {!currentUser &&
-              <NavItem>
-                <NavLink to="/login"
-                  activeClassName="active"
-                  tag={RRNavLink}>Login</NavLink>
-              </NavItem>}
-            {!currentUser &&
-              <NavItem>
-                <NavLink to="/signup"
-                  activeClassName="active"
-                  tag={RRNavLink}>Sign Up</NavLink>
-              </NavItem>}
-            {currentUser &&
-              <NavItem>
-                <button
-                  className="nav-link"
-                  onClick={logout}>Log out, {currentUser.firstName}
-                </button>
-              </NavItem>}
+            {currentUser && loggedIn()}
+            {!currentUser && loggedOut()}
           </Nav>
         </Collapse>
       </Navbar>

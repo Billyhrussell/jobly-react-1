@@ -4,6 +4,9 @@ import React, { useState } from "react";
  *
  * Props:
  * - onSubmit: function to call in parent.
+ * 
+ * State:
+ * - formData
  *
  * { CompanyList, JobList } -> SearchForm
  */

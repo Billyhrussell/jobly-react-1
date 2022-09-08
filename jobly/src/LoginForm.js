@@ -6,6 +6,9 @@ import "./LoginForm.css";
  *
  * Props:
  * - login: function to call in parent.
+ * 
+ * State:
+ * - formData
  *
  * RoutesList -> LoginForm
  */

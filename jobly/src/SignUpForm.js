@@ -6,6 +6,9 @@ import "./SignUpForm.css"
  *
  * Props:
  * - register: function to call in parent.
+ * 
+ * State:
+ * - formData
  *
  * RoutesList -> SignUpForm
  */
@@ -15,7 +18,6 @@ function SignUpForm({ register }) {
     { username: "", password: "", firstName: "", lastName: "", email: "" };
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initial);
-  console.log("what is signup formData", formData);
 
   /** Update form input. */
   function handleChange(evt) {

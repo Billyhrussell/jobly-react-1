@@ -1,4 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import userContext from './userContext';
+import React, { useContext } from "react";
 
 import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
@@ -20,7 +22,9 @@ import Login from './LoginForm';
  *
 */
 
-function RouteList({login, signup}) {
+function RouteList({ login, signup }) {
+  const { currentUser } = useContext(userContext);
+
   return (
     <Routes>
       <Route
@@ -28,35 +32,41 @@ function RouteList({login, signup}) {
         element={<Homepage />}
       />
 
-      <Route
-        path="/companies"
-        element={<CompanyList />}
-      />
+      {currentUser &&
+        <Route
+          path="/companies"
+          element={<CompanyList />}
+        />}
 
-      <Route
-        path="/companies/:handle"
-        element={<CompanyDetails />}
-      />
+      {currentUser &&
+        <Route
+          path="/companies/:handle"
+          element={<CompanyDetails />}
+        />}
 
-      <Route
-        path="/jobs"
-        element={<JobList />}
-      />
+      {currentUser &&
+        <Route
+          path="/jobs"
+          element={<JobList />}
+        />}
 
       <Route
         path="/login"
-        element={<Login login={login}/>}
+        element={<Login login={login} />}
       />
 
       <Route
         path="/signup"
-        element={<SignUp register={signup}/>}
+        element={<SignUp register={signup} />}
       />
 
-      <Route
-        path="/profile"
-        element={<Profile />}
-      />
+      {currentUser &&
+        <Route
+          path="/profile"
+          element={<Profile />}
+        />}
+
+      <Route path="*" element={<Navigate to="/" />} />
 
     </Routes>
   );
