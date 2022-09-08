@@ -6,13 +6,13 @@ import Homepage from "./Homepage";
 import CompanyList from "./CompanyList";
 import CompanyDetails from "./CompanyDetails";
 import JobList from "./JobList";
-import Profile from './Profile';
+import ProfileForm from './ProfileForm';
 import SignUp from './SignUpForm';
 import Login from './LoginForm';
 
 /** Function  creates paths to different pages
  *
- * Props: 
+ * Props:
  * - login: function to be called in from parent
  * - signup: function to be called in from parent
  *
@@ -63,7 +63,7 @@ function RouteList({ login, signup }) {
       {currentUser &&
         <Route
           path="/profile"
-          element={<Profile />}
+          element={<ProfileForm />}
         />}
 
       <Route path="*" element={<Navigate to="/" />} />

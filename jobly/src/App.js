@@ -13,7 +13,7 @@ import RoutesList from "./RoutesList";
  *
  * props: none
  *
- * state: 
+ * state:
  * - token
  * - currentUser: object {username, firstName, lastName, email, isAdmin, jobs}
  *      where jobs is {id, title, companyHandle, companyName, state}
@@ -24,25 +24,26 @@ import RoutesList from "./RoutesList";
 
 function App() {
 
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(function getCurrentUser() {
-    if (token) {
-      async function getUser(token) {
+
+    async function getUser(token) {
+      if (token) {
+        JoblyApi.token = token;
         try {
           let user = jwt_decode(token);
           const userData = await JoblyApi.getUserInfo(user.username);
           setCurrentUser(userData);
-          localStorage.setItem(currentUser);
         } catch (err) {
           console.error("ERROR: ", err);
         }
+      }else{
+        setCurrentUser(null);
       }
-      getUser(token);
-    } else {
-      localStorage.removeItem(currentUser);
     }
+    getUser(token);
   }, [token]);
 
 
@@ -50,30 +51,32 @@ function App() {
     try {
       let tokenData = await JoblyApi.login(username, password);
       setToken(tokenData);
-      JoblyApi.token = tokenData;
+      localStorage.setItem("token", tokenData);
     } catch (err) {
       console.error("ERROR: ", err);
     }
   }
 
+  //TODO: set "token" to global
   function logout() {
     setCurrentUser(null);
     setToken(null);
     JoblyApi.token = null;
+    localStorage.removeItem("token");
   }
 
   async function signup({ username, password, firstName, lastName, email }) {
     try {
       let tokenData = await JoblyApi.createNewUser(username, password, firstName, lastName, email);
       setToken(tokenData);
-      JoblyApi.token = tokenData;
+      localStorage.setItem("token", tokenData);
     } catch (err) {
       console.error("ERROR: ", err);
     }
   }
 
   return (
-    <userContext.Provider value={{ currentUser }}>
+    <userContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="App">
         <BrowserRouter>
           <Navigation logout={logout} />

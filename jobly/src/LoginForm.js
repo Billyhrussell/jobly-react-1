@@ -6,7 +6,7 @@ import "./LoginForm.css";
  *
  * Props:
  * - login: function to call in parent.
- * 
+ *
  * State:
  * - formData
  *
@@ -62,6 +62,7 @@ function LoginForm({ login }) {
             onChange={handleChange}
             value={formData.password}
             aria-label="Password"
+            type="password"
           />
         </div>
         <div className="mb-3">

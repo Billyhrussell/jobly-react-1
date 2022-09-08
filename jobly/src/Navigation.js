@@ -15,10 +15,10 @@ import userContext from './userContext';
 
 /** Displays Navigation bar with links to homepage, company list, and job list
  *
- * Props: 
+ * Props:
  * - logout: function called from parent
  *
- * State: 
+ * State:
  * - isOpen: boolean
  *
  * App -> Navigation
@@ -35,13 +35,18 @@ function Navigation({ logout }) {
       <>
         <NavItem>
           <NavLink to="/companies"
-            activeClassName="active"
+            activeclassname="active"
             tag={RRNavLink}>Companies</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/jobs"
-            activeClassName="active"
+            activeclassname="active"
             tag={RRNavLink}>Jobs</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink to="/profile"
+            activeclassname="active"
+            tag={RRNavLink}>Profile</NavLink>
         </NavItem>
         <NavItem>
           <button
@@ -58,12 +63,12 @@ function Navigation({ logout }) {
       <>
         <NavItem>
           <NavLink to="/login"
-            activeClassName="active"
+            activeclassname="active"
             tag={RRNavLink}>Login</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/signup"
-            activeClassName="active"
+            activeclassname="active"
             tag={RRNavLink}>Sign Up</NavLink>
         </NavItem>
       </>
