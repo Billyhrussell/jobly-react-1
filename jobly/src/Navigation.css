@@ -1,0 +1,9 @@
+.nav-link.active {
+    color: black;
+    font-weight: bold;
+}
+
+button {
+    background: none;
+    border: none
+}

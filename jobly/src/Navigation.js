@@ -1,4 +1,4 @@
-// import { NavLink } from "react-router-dom";
+import "./Navigation.css";
 import React, { useState, useContext } from 'react';
 import {
   Collapse,
@@ -9,6 +9,7 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import { NavLink as RRNavLink } from 'react-router-dom';
 
 import userContext from './userContext';
 
@@ -36,25 +37,24 @@ function Navigation({ logout }) {
           <Nav className="ms-auto" navbar>
             {currentUser &&
               <NavItem>
-                <NavLink href="/companies">Companies</NavLink>
+                <NavLink to="/companies" activeClassName="active" tag={RRNavLink}>Companies</NavLink>
               </NavItem>}
             {currentUser &&
               <NavItem>
-                <NavLink href="/jobs">Jobs</NavLink>
+                <NavLink to="/jobs" activeClassName="active" tag={RRNavLink}>Jobs</NavLink>
               </NavItem>}
             {!currentUser &&
               <NavItem>
-                <NavLink href="/login">Login</NavLink>
+                <NavLink to="/login" activeClassName="active" tag={RRNavLink}>Login</NavLink>
               </NavItem>}
             {!currentUser &&
               <NavItem>
-                <NavLink href="/signup">Sign Up</NavLink>
+                <NavLink to="/signup" activeClassName="active" tag={RRNavLink}>Sign Up</NavLink>
               </NavItem>}
             {currentUser &&
               <NavItem>
                 <button
                   className="nav-link"
-                  style={{ background: "none", border: "none" }}
                   onClick={logout}>Log out, {currentUser.firstName}
                 </button>
               </NavItem>}
