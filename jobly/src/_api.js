@@ -14,9 +14,7 @@ class JoblyApi {
   // Remember, the backend needs to be authorized with a token
   // We're providing a token you can use to interact with the backend API
   // DON'T MODIFY THIS TOKEN
-  static token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  static token = "";
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
@@ -46,64 +44,64 @@ class JoblyApi {
   }
 
   /**Get list of all companies */
-  
+
   static async getAllCompanies(){
     let res = await this.request(`companies`);
     return res.companies;
   }
-  
+
   /**Get list of companies with search parameter */
-  
+
   static async getSearchedCompanies(query){
     let res = await this.request(`companies?name=${query}`);
     return res.companies;
   }
-  
+
   /**Get list of all jobs */
-  
+
   static async getAllJobs(){
     let res = await this.request(`jobs`);
     return res.jobs;
   }
-  
+
   /**Get list of jobs with search parameter */
-  
+
   static async getSearchedJobs(query){
     let res = await this.request(`jobs?title=${query}`);
     return res.jobs;
   }
-  
+
   /** Create a new user */
-  
+
   static async createNewUser(username, password, firstName, lastName, email){
-    let res = await this.request("auth/register", 
+    let res = await this.request("auth/register",
       {username, password, firstName, lastName, email},
       "post");
     return res.token;
   }
-  
+
   /** Login a user */
-  
+
   static async login(username, password){
     let res = await this.request("auth/token", {username, password}, "post");
     return res.token;
   }
-  
+
   /** Get individual user information */
   static async getUserInfo(username){
     let res = await this.request(`users/${username}`);
     return res.user;
   }
-  
+
   /**Update individual user information */
-  
+
   static async updateUserInfo(username, firstName, lastName, email){
-    let res = await this.request(`users/${username}`, 
+    let res = await this.request(`users/${username}`,
       {firstName, lastName, email},
       "patch");
     return res.user;
   }
-  
+
 }
 
 export default JoblyApi;

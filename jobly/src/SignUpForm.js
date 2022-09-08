@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-
+import {useNavigate} from "react-router-dom";
 
 function SignUpForm({ register }) {
-  const initial = 
+  const initial =
     { username: "", password:"", firstName:"", lastName:"", email:"" };
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initial);
   console.log("what is signup formData", formData);
-  
+
   /** Update form input. */
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -22,6 +22,7 @@ function SignUpForm({ register }) {
     evt.preventDefault();
     register(formData);
     setFormData(initial);
+    navigate("/");
   }
 
   return (

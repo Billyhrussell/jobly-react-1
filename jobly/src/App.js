@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import jwt_decode from "jwt-decode";
 import { BrowserRouter } from "react-router-dom";
 
@@ -21,32 +21,48 @@ import RoutesList from "./RoutesList";
 
 function App() {
 
-  const [token, setToken] = useState(JoblyApi.token);
+  const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   console.log("what is current token: ", token);
   console.log("who is current user: ", currentUser);
 
-  useEffect(function getCurrentUser() {
-    async function getUser() { 
-      try {
-        let { username } = jwt_decode(token);
-        console.log("decoded token: ", username);
-        const userData = await JoblyApi.getUserInfo(username);
-        setCurrentUser(userData);
-      } catch (err) {
-        console.error("ERROR: ", err);
-      }
+
+  // useEffect(function getCurrentUser() {
+  //   async function getUser() {
+  //     try {
+  //       let { username } = jwt_decode(token);
+  //       console.log("decoded token: ", username);
+  //       const userData = await JoblyApi.getUserInfo(username);
+  //       setCurrentUser(userData);
+  //     } catch (err) {
+  //       console.error("ERROR: ", err);
+  //     }
+  //   }
+  //   getUser();
+  // }, [token]);
+
+  async function getUser(token) {
+    try {
+      console.log("token inside of try ", token);
+      let user = jwt_decode(token);
+      console.log("decoded token: ", user);
+      const userData = await JoblyApi.getUserInfo(user.username);
+      setCurrentUser(userData);
+    } catch (err) {
+      console.error("ERROR: ", err);
     }
-    getUser();
-  }, [token]);
+  }
 
   async function login({username, password}) {
     let tokenData = await JoblyApi.login(username, password);
+    console.log("token data: ", tokenData);
     setToken(tokenData);
     JoblyApi.token = tokenData;
+    getUser(tokenData);
   }
 
   function logout() {
+    setCurrentUser(null);
     setToken(null);
     JoblyApi.token = null;
   }
@@ -55,9 +71,8 @@ function App() {
     let tokenData = await JoblyApi.createNewUser(username, password, firstName, lastName, email);
     setToken(tokenData);
     JoblyApi.token = tokenData;
+    getUser();
   }
-  
-  if(!currentUser) return (<h1>Loading...</h1>);
 
   return (
     <userContext.Provider value={{ currentUser }}>

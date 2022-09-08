@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function LoginForm({ login }) {
   const initial = { username: "", password:"" };
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(initial);
 
   /** Update form input. */
@@ -20,6 +21,7 @@ function LoginForm({ login }) {
     evt.preventDefault();
     login(formData);
     setFormData(initial);
+    navigate("/");
   }
 
   return (
