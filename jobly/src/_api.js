@@ -101,6 +101,14 @@ class JoblyApi {
       "patch");
     return res.user;
   }
+  
+  /**Current user applies to specific job */
+  
+  static async applyToJob(username, jobId){
+    let res = await this.request(`users/${username}/jobs/${jobId}`,
+      "post");
+    return res;
+  }
 
 }
 
