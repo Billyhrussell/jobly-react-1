@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignUpForm.css"
+import userContext from "./userContext";
 
 /** Form for adding.
  *
@@ -14,10 +15,12 @@ import "./SignUpForm.css"
  */
 
 function SignUpForm({ register }) {
+  const { currentUser } = useContext(userContext);
   const initial =
     { username: "", password: "", firstName: "", lastName: "", email: "" };
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initial);
+  const [isBadLogin, setIsBadLogin] = useState(true);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -33,7 +36,8 @@ function SignUpForm({ register }) {
     evt.preventDefault();
     register(formData);
     setFormData(initial);
-    navigate("/");
+    if(currentUser) navigate("/");
+    if(!currentUser) setIsBadLogin(false);
   }
 
   return (
@@ -102,6 +106,11 @@ function SignUpForm({ register }) {
             aria-label="Email"
           />
         </div>
+        {!isBadLogin &&
+          <div class="alert alert-danger" role="alert">
+            All fields must be filled out
+          </div>
+        }
         <div>
           <button className="btn btn-primary">
             Submit

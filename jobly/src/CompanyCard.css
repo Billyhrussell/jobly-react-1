@@ -22,3 +22,11 @@ img {
     margin-top: -25px;
     margin-left: 90%;
 }
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+    img {
+        margin-left: 85%;
+    }
+ }
+

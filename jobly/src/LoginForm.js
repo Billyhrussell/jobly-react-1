@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
+import userContext from "./userContext";
 
 /** Form for logging in.
  *
@@ -14,9 +15,11 @@ import "./LoginForm.css";
  */
 
 function LoginForm({ login }) {
+  const { currentUser } = useContext(userContext);
   const initial = { username: "", password: "" };
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initial);
+  const [isBadLogin, setIsBadLogin] = useState(true);
 
   /** Update form input. */
   function handleChange(evt) {
@@ -28,11 +31,13 @@ function LoginForm({ login }) {
   }
 
   /** Call parent function and clear form. */
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    login(formData);
+    await login(formData);
     setFormData(initial);
-    navigate("/");
+    console.log("CURR USER:", currentUser);
+    if (currentUser) navigate("/");
+    if (!currentUser) setIsBadLogin(false);
   }
 
   return (
@@ -53,7 +58,7 @@ function LoginForm({ login }) {
           />
         </div>
         <div className="mb-3">
-        <label className="mb-2 label">Password</label>
+          <label className="mb-2 label">Password</label>
           <input
             id="password"
             name="password"
@@ -65,6 +70,11 @@ function LoginForm({ login }) {
             type="password"
           />
         </div>
+        {!isBadLogin &&
+          <div class="alert alert-danger" role="alert">
+            Incorrect Username or Password
+          </div>
+        }
         <div className="mb-3">
           <button className="btn btn-primary">
             Submit

@@ -1,9 +1,15 @@
 import "./Loading.css";
 
-/** TODO: docstring */
+/** Loading renders loading screen
+ *
+ * props: none
+ *
+ * state: none
+ * 
+*/
 
 function Loading(){
-  
+
   return(
     <h1 className="loading">Loading...</h1>
   )
