@@ -20,11 +20,13 @@ function JobCard({ job, company = null }) {
   
   //WHAT WE DID: added isApplied state, button, and apply fx.
   //current error: honestly not sure
-  const [isApplied, setIsApplied] = useState((currentUser.jobs).some(j => j.id === id));
+  const [isApplied, setIsApplied] = useState((currentUser.applications).includes(id));
   
   async function applyToJob(){
+    console.log("clicked!!");
     await JoblyApi.applyToJob(currentUser.username, id);
     setIsApplied(true);
+    console.log("finished applying");
   }
 
   return (
@@ -37,12 +39,12 @@ function JobCard({ job, company = null }) {
       <p>Salary: {salary || "unknown"} <br/>
         Equity: {equity || "unknown"}</p>
       <button 
-        style={{backgroundColor:"red"}}
         disabled={isApplied}
         id={id}
-        className="apply" 
+        className="apply btn btn-danger" 
         onClick={applyToJob}>
-          APPLY
+          {isApplied && "APPLIED"}
+          {!isApplied && "APPLY"}
       </button>
     </div>
   );

@@ -30,6 +30,8 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem(GLOBAL_TOKEN) || null);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  
+  console.log("current user: ", currentUser);
 
   useEffect(function getCurrentUser() {
 
