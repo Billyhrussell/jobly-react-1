@@ -7,6 +7,7 @@ import userContext from "./userContext";
 
 import Navigation from "./Navigation";
 import RoutesList from "./RoutesList";
+import Loading from "./Loading";
 
 /**
  * App
@@ -28,6 +29,7 @@ function App() {
 
   const [token, setToken] = useState(localStorage.getItem(GLOBAL_TOKEN) || null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(function getCurrentUser() {
 
@@ -38,16 +40,19 @@ function App() {
           let user = jwt_decode(token);
           const userData = await JoblyApi.getUserInfo(user.username);
           setCurrentUser(userData);
+          setIsLoading(false);
         } catch (err) {
           console.error("ERROR: ", err);
         }
       }else{
         setCurrentUser(null);
+        setIsLoading(false);
       }
     }
     getUser(token);
   }, [token]);
 
+  if(isLoading) return (<Loading />);
 
   async function login({ username, password }) {
     try {
