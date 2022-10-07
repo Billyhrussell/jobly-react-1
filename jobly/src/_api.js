@@ -79,7 +79,7 @@ class JoblyApi {
       "post");
     return res.token;
   }
-
+ 
   /** Login a user */
 
   static async login(username, password) {
